@@ -1,5 +1,6 @@
 package com.kdmeubichinho.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
