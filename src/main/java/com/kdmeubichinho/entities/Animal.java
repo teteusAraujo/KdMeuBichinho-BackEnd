@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class Animal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Columnn(name = "id_animal")
+	@Column(name = "id_animal")
 	private Integer idAnimal;
 	@Column(nullable = false)
 	private AnimalSexo sexo;
