@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.kdmeubichinho.enums.AnimalSexo;
+
 public class Animal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
