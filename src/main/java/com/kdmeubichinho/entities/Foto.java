@@ -17,4 +17,3 @@ public class Foto {
 //	private Animal idAnimal;
 	
 }
-}
