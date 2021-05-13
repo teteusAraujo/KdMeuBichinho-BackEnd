@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.kdmeubichinho.enums.AnimalClassificacaoEtaria;
+import com.kdmeubichinho.enums.AnimalPorte;
 import com.kdmeubichinho.enums.AnimalSexo;
 
 public class Animal {
@@ -68,4 +70,5 @@ public Animal(AnimalSexo sexo, AnimalClassificacaoEtaria classificacaoEtaria, An
 	this.cep = cep;
 	this.especie = especie;
 	this.fotos = fotos;
+	}
 }
