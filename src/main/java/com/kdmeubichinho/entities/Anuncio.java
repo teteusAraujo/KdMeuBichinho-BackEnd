@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kdmeubichinho.enums.AnuncioStatus;
 
 public class Anuncio {
 	@Id
