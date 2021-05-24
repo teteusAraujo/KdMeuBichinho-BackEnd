@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kdmeubichinho.converters.AnimalClassificacaoEtariaConverter;
 import com.kdmeubichinho.converters.AnimalPorteConverter;
 import com.kdmeubichinho.converters.AnimalSexoConverter;
 import com.kdmeubichinho.entities.Animal;
