@@ -9,15 +9,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
-import br.com.Kdmeubichinho.converters.AnuncioStatusConverter;
-import br.com.Kdmeubichinho.entities.Anuncio;
-import br.com.Kdmeubichinho.entities.Pessoa;
-import br.com.Kdmeubichinho.enums.AnimalClassificacaoEtaria;
-import br.com.Kdmeubichinho.enums.AnimalPorte;
-import br.com.Kdmeubichinho.enums.AnimalSexo;
-import br.com.Kdmeubichinho.enums.AnuncioStatus;
-import br.com.Kdmeubichinho.repositories.AnuncioRepository;
-import br.com.Kdmeubichinho.repositories.PessoaRepository;
+import com.kdmeubichinho.converters.AnuncioStatusConverter;
+import com.kdmeubichinho.entities.Anuncio;
+import com.kdmeubichinho.entities.Pessoa;
+import com.kdmeubichinho.enums.AnimalClassificacaoEtaria;
+import com.kdmeubichinho.enums.AnimalPorte;
+import com.kdmeubichinho.enums.AnimalSexo;
+import com.kdmeubichinho.enums.AnuncioStatus;
+import com.kdmeubichinho.repositories.AnuncioRepository;
+import com.kdmeubichinho.repositories.PessoaRepository;
+
 import br.com.Kdmeubichinho.specification.AnuncioSpecification;
 
 public class AnuncioService {
