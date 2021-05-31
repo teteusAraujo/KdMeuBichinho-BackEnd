@@ -18,8 +18,7 @@ import com.kdmeubichinho.enums.AnimalSexo;
 import com.kdmeubichinho.enums.AnuncioStatus;
 import com.kdmeubichinho.repositories.AnuncioRepository;
 import com.kdmeubichinho.repositories.PessoaRepository;
-
-import br.com.Kdmeubichinho.specification.AnuncioSpecification;
+import com.kdmeubichinho.specification.AnuncioSpecification;
 
 public class AnuncioService {
 	
