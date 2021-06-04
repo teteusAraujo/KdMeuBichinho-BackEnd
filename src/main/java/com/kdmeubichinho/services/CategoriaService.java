@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kdmeubichinho.dto.CategoriaRequestDTO;
 import com.kdmeubichinho.entities.Categoria;
 import com.kdmeubichinho.repositories.CategoriaRepository;
 
