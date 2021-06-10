@@ -36,6 +36,10 @@ public class CategoriaController {
 	public CategoriaRequestDTO addCategory(@RequestBody CategoriaRequestDTO categoryRequestDTO) {
 		return categoriaService.addCategory(categoryRequestDTO);
 	}
+	
+	public void deleteCategory(@PathVariable Integer id) {
+		categoriaService.deleteCategory(id);
+	}
 
 
 }
