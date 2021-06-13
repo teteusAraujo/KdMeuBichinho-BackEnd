@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kdmeubichinho.entities.Especie;
+import com.kdmeubichinho.services.EspecieService;
 
 
 @RestController
