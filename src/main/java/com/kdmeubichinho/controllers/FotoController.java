@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 
 import com.kdmeubichinho.entities.Foto;
 import com.kdmeubichinho.repositories.FotoRepository;
+import com.kdmeubichinho.util.FileUploadUtil;
 
 @RestController
 @RequestMapping(path = "foto")
