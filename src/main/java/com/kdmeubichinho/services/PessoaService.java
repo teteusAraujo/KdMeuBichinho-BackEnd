@@ -6,6 +6,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kdmeubichinho.dto.PessoaDTO;
+import com.kdmeubichinho.entities.Pessoa;
+import com.kdmeubichinho.repositories.PessoaRepository;
+
 public class PessoaService implements UserDetailsService {
 	
 	@Autowired
