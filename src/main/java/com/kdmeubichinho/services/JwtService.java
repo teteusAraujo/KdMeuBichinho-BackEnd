@@ -8,6 +8,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.kdmeubichinho.entities.Pessoa;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 
 public class JwtService {
@@ -30,6 +33,14 @@ public class JwtService {
 				.setExpiration(data)
 				.signWith(SignatureAlgorithm.HS512, chaveAssinatura)
 				.compact();
+	}
+	
+	private Claims obterClaims(String token) throws ExpiredJwtException {
+		return Jwts
+				.parser()
+				.setSigningKey(chaveAssinatura)
+				.parseClaimsJws(token)
+				.getBody();
 	}
 
 }
