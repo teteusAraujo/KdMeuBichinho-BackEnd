@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.kdmeubichinho.entities.Pessoa;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
 
 public class JwtService {
 	
@@ -21,6 +18,7 @@ public class JwtService {
 	@Value("${security.jwt.chave-assinatura}")
 	private String chaveAssinatura;
 	
+	/*
 	public String gerarToken(Pessoa pessoa) {
 		long expString = Long.valueOf(expiracao);
 		LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusDays(expString);
@@ -55,5 +53,9 @@ public class JwtService {
 			return false;
 		}
 	}
-
+	
+	public String obterEmailUsuario(String token) throws ExpiredJwtException {
+		return (String) obterClaims(token).getSubject();
+	}
+	*/
 }

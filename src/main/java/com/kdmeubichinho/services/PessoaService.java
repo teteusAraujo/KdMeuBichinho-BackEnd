@@ -27,12 +27,15 @@ public class PessoaService implements UserDetailsService {
 	public Iterable<Pessoa> getAllPersons(){
 		return pessoaRepository.findAll();
 	}
+	
 	public Optional<Pessoa> getPersonById(Integer id){
 		return pessoaRepository.findById(id);
 	}
+	
 	public Pessoa getPersonByEmail(String email) {
 		return pessoaRepository.findOneByEmail(email);
 	}
+	
 	@Transactional
     public Pessoa savePerson(PessoaDTO pessoa){
         String senhaCriptografada = passwordEncoder.encode(pessoa.getSenha());
