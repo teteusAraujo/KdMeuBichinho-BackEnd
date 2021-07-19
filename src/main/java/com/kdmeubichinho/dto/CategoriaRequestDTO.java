@@ -14,9 +14,8 @@ public class CategoriaRequestDTO {
 private String classificacao;
 	
 	public Categoria build() {
-		Categoria categoria = new Categoria()
+		return new Categoria()
 				.setClassificacao(this.classificacao);
-		return categoria;
 	}
 
 }

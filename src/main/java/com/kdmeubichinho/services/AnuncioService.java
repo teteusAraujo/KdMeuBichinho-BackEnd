@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
+import com.kdmeubichinho.enums.*;
+import com.kdmeubichinho.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,10 +14,6 @@ import org.springframework.data.jpa.domain.Specification;
 import com.kdmeubichinho.converters.AnuncioStatusConverter;
 import com.kdmeubichinho.entities.Anuncio;
 import com.kdmeubichinho.entities.Pessoa;
-import com.kdmeubichinho.enums.AnimalClassificacaoEtaria;
-import com.kdmeubichinho.enums.AnimalPorte;
-import com.kdmeubichinho.enums.AnimalSexo;
-import com.kdmeubichinho.enums.AnuncioStatus;
 import com.kdmeubichinho.repositories.AnuncioRepository;
 import com.kdmeubichinho.repositories.PessoaRepository;
 import com.kdmeubichinho.specification.AnuncioSpecification;
@@ -71,10 +69,10 @@ public class AnuncioService {
 		return anuncio;
 	}
 
-	public Anuncio updateStatusAnnounce(Integer idAnuncio) throws Exception {
+	public Anuncio updateStatusAnnounce(Integer idAnuncio) {
 
 		AnuncioStatusConverter statusConverter = new AnuncioStatusConverter();
-		Anuncio meuAnuncio = anuncioRepository.findById(idAnuncio).orElseThrow(() -> new IllegalAccessException());
+		Anuncio meuAnuncio = anuncioRepository.findById(idAnuncio).orElseThrow(() -> new ValidationException(EnumException.ITEM_NAO_ENCONTRADO));
 
 		Date date = new Date();
 		date.setHours((date.getHours()) - 3);
