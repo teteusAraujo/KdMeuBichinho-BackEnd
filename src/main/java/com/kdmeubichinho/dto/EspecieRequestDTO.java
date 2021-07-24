@@ -14,9 +14,8 @@ public class EspecieRequestDTO {
 	private String nome;
 	
 	public Especie build() {
-		Especie especie = new Especie()
+		return new Especie()
 				.setNome(this.nome);
-		return especie;
 	}
 
 }

@@ -1,6 +1,9 @@
 package com.kdmeubichinho.services;
 
 import java.util.Optional;
+
+import com.kdmeubichinho.enums.EnumException;
+import com.kdmeubichinho.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +32,14 @@ public class AnimalService {
 		animalRepository.save(animal);
 		return animal;
 	}
-	public Animal updateAnimal(Integer idAnimal, Animal dadosAnimal) throws Exception{
+	public Animal updateAnimal(Integer idAnimal, Animal dadosAnimal){
 		
 		AnimalPorteConverter porteAnimalConverter = new AnimalPorteConverter();
 		AnimalClassificacaoEtariaConverter classificacaoEtariaAnimalConverter = new AnimalClassificacaoEtariaConverter();
 		AnimalSexoConverter sexoAnimalConverter = new AnimalSexoConverter();
 		
 		Animal meuAnimal = animalRepository.findById(idAnimal)
-				.orElseThrow(()-> new IllegalAccessException());
+				.orElseThrow(()-> new ValidationException(EnumException.ITEM_NAO_ENCONTRADO));
 				
 		if(dadosAnimal.getCastrado() != null) meuAnimal.setCastrado(dadosAnimal.getCastrado());
 		if(dadosAnimal.getVacinado() != null) meuAnimal.setVacinado(dadosAnimal.getVacinado());
@@ -44,7 +47,7 @@ public class AnimalService {
 		if(!dadosAnimal.getCep().isEmpty()) meuAnimal.setCep(dadosAnimal.getCep());
 		if(!dadosAnimal.getNome().isEmpty()) meuAnimal.setNome(dadosAnimal.getNome());
 		if(!dadosAnimal.getPorte().isEmpty()) meuAnimal.setPorte(porteAnimalConverter.convertToEntityAttribute(dadosAnimal.getPorte()));
-		if(!dadosAnimal.getClassificacaoEtaria().isEmpty()) meuAnimal.setClassificacaoEtaria(classificacaoEtariaAnimalConverter.convertToEntityAttribute(dadosAnimal.getClassificacaoEtaria()));;
+		if(!dadosAnimal.getClassificacaoEtaria().isEmpty()) meuAnimal.setClassificacaoEtaria(classificacaoEtariaAnimalConverter.convertToEntityAttribute(dadosAnimal.getClassificacaoEtaria()));
 		if(!dadosAnimal.getSexo().isEmpty()) meuAnimal.setSexo(sexoAnimalConverter.convertToEntityAttribute(dadosAnimal.getSexo()));
 		
 		animalRepository.save(meuAnimal);

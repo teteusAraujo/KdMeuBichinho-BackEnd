@@ -65,7 +65,7 @@ public class Anuncio {
 		return status.getDescricao();
 	}
 
-	public Anuncio(AnuncioStatus status, Date dataCriacao, Pessoa idPessoa, Animal idAnimal, Categoria idCategoria) {
+	public Anuncio(AnuncioStatus status, Date dataCriacao, Pessoa idPessoa, Animal idAnimal) {
 		this.status = status;
 		this.dataCriacao = dataCriacao;
 		this.idPessoa = idPessoa;
