@@ -9,8 +9,11 @@ import com.kdmeubichinho.entities.Mensagem;
 import com.kdmeubichinho.repositories.MensagemRepository;
 import com.kdmeubichinho.repositories.PessoaRepository;
 
+import com.kdmeubichinho.entities.Pessoa;
+
 @Service
 public class MensagemService {
+	
 	@Autowired
 	private MensagemRepository mensagemRepository;
 	@Autowired
@@ -21,6 +24,16 @@ public class MensagemService {
 	}
 	public Optional<Mensagem> getMessageById(Integer id){
 		return mensagemRepository.findById(id);
+	}
+	
+	public Mensagem addMessage(Mensagem message){
+		Optional<Pessoa> pessoa = pessoaRepository.findByEmail(message.getIdPessoa().getEmail());
+		if(pessoa.isPresent()) {
+			Integer pessoaId = pessoa.get().getIdPessoa();
+			message.getIdPessoa().setIdPessoa(pessoaId);
+		}		
+		mensagemRepository.save(message);
+		return message;
 	}
 
 }
