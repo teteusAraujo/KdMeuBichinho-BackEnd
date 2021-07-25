@@ -1,5 +1,6 @@
 package com.kdmeubichinho.dto;
 
+import com.kdmeubichinho.dto.generics.ObjectDTO;
 import com.kdmeubichinho.entities.Categoria;
 
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoriaRequestDTO {
+public class CategoriaRequestDTO implements ObjectDTO {
 	
 private String classificacao;
 	

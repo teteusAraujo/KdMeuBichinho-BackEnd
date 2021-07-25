@@ -1,11 +1,9 @@
 package com.kdmeubichinho.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kdmeubichinho.entities.generics.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Categoria {
+public class Categoria implements BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +23,11 @@ public class Categoria {
 	
 	@Column(nullable = false)
 	private String classificacao;
+
+	@Transient
+	@Override
+	@JsonIgnore
+	public Integer getId() {
+		return this.getIdCategoria();
+	}
 }

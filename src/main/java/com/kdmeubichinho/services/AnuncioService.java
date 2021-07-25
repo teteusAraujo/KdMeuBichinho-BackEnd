@@ -17,7 +17,9 @@ import com.kdmeubichinho.entities.Pessoa;
 import com.kdmeubichinho.repositories.AnuncioRepository;
 import com.kdmeubichinho.repositories.PessoaRepository;
 import com.kdmeubichinho.specification.AnuncioSpecification;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AnuncioService {
 	
 

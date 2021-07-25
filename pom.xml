@@ -13,9 +13,32 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>KdMeuBichinho</name>
 	<description>website que surgiu com a missão de ajudar as pessoas que querem encontrar seu melhor amigo(pet) que foi perdido ou encontrar alguém que está doando.</description>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonarsource.scanner.maven</groupId>
+						<artifactId>sonar-maven-plugin</artifactId>
+						<version>3.4.0.905</version>
+					</plugin>
+				</plugins>
+			</build>
+
+			<properties>
+				<sonar.host.url>
+					http://localhost:9000
+				</sonar.host.url>
+				<sonar.login>59366ca3a176fd316577cd86b0ea883c672bf5b6</sonar.login>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,6 +65,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

@@ -1,47 +1,23 @@
 package com.kdmeubichinho.controllers;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.kdmeubichinho.controllers.generics.RestBasicController;
 import com.kdmeubichinho.dto.CategoriaRequestDTO;
 import com.kdmeubichinho.entities.Categoria;
 import com.kdmeubichinho.services.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @RequestMapping(path = "categoria")
-public class CategoriaController {
+public class CategoriaController extends RestBasicController<Categoria, CategoriaRequestDTO> {
 
-	@Autowired
 	CategoriaService categoriaService;
 
-	@GetMapping
-	public Iterable<Categoria> getAllCategory() {
-		return categoriaService.getAllCategory();
+	@Autowired
+	public CategoriaController(CategoriaService service) {
+		super(service);
+		this.categoriaService = service;
 	}
-	
-	@GetMapping("/{id}")
-	public Optional<Categoria> getCategoryById(@PathVariable Integer id) {
-		return categoriaService.getCategoryById(id);
-	}
-
-	@PostMapping()
-	public CategoriaRequestDTO addCategory(@RequestBody CategoriaRequestDTO categoryRequestDTO) {
-		return categoriaService.addCategory(categoryRequestDTO);
-	}
-	
-	@DeleteMapping("/{id}")
-	public void deleteCategory(@PathVariable Integer id) {
-		categoriaService.deleteCategory(id);
-	}
-
-
 }

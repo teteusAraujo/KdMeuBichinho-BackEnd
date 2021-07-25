@@ -29,9 +29,9 @@ public class GlobalControllerExceptionHandler {
 		return new ResponseEntity<>(new CustomExceptionDTO(errorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ExceptionHandler(IllegalStateException.class)
+	@ExceptionHandler(Exception.class)
 	@ResponseBody
-	public ResponseEntity<CustomExceptionDTO> handleIllegalStateException(IllegalStateException ex) {
+	public ResponseEntity<CustomExceptionDTO> handleAllOtherException(Exception ex) {
 		return new ResponseEntity<>(new CustomExceptionDTO(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
