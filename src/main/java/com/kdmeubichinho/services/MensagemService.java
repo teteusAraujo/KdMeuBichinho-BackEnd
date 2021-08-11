@@ -35,5 +35,15 @@ public class MensagemService {
 		mensagemRepository.save(message);
 		return message;
 	}
+	
+	public Mensagem updateMessage(Integer idMessage, Mensagem dataMessage) throws Exception{
+		Mensagem messageToUpdate = mensagemRepository.findById(idMessage)
+				.orElseThrow(()-> new IllegalAccessException());
+		
+		if(!dataMessage.getMensagem().isEmpty()) messageToUpdate.setMensagem(dataMessage.getMensagem());
+		
+		mensagemRepository.save(messageToUpdate);
+		return messageToUpdate;
+	}
 
 }
