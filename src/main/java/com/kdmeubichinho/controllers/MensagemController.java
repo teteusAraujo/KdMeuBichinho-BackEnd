@@ -1,8 +1,11 @@
 package com.kdmeubichinho.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +23,10 @@ public class MensagemController {
 	@GetMapping()
 	public Iterable<Mensagem> getAllMessages(){
 		return mensagemService.getAllMessages();
+	}
+	
+	@GetMapping("/{id}")
+	public Optional<Mensagem> getMessageById(@PathVariable Integer id){
+		return mensagemService.getMessageById(id);
 	}
 }
