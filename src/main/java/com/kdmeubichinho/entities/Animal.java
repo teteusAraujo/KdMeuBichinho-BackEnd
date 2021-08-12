@@ -1,26 +1,13 @@
 package com.kdmeubichinho.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
 import com.kdmeubichinho.enums.AnimalClassificacaoEtaria;
 import com.kdmeubichinho.enums.AnimalPorte;
 import com.kdmeubichinho.enums.AnimalSexo;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
-@Data
+import javax.persistence.*;
+
 @Entity
 @Getter
 @Setter
@@ -62,16 +49,14 @@ public class Animal {
 	@JoinColumn(name = "fk_id_foto")
 	private Foto fotos;
 
-	public String getSexo() {
-		return sexo.getDescricao();
-	}
-
-	public String getClassificacaoEtaria() {
-		return classificacaoEtaria.getDescricao();
-	}
-
-	public String getPorte() {
-		return porte.getDescricao();
+	public Animal(AnimalSexo animalSexo, AnimalClassificacaoEtaria classificacaoEtaria, AnimalPorte animalPorte,
+				  Boolean castrado, Boolean vacinado, String cep){
+		sexo = animalSexo;
+		this.classificacaoEtaria = classificacaoEtaria;
+		porte = animalPorte;
+		this.castrado = castrado;
+		this.vacinado = vacinado;
+		this.cep = cep;
 	}
 
 }

@@ -2,11 +2,10 @@ package com.kdmeubichinho.dto;
 
 import com.kdmeubichinho.entities.Pessoa;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PessoaDTO {
@@ -27,6 +26,6 @@ public class PessoaDTO {
     
     public Pessoa build() {
     	return new Pessoa(this.idPessoa, this.nome, this.email, this.cep, this.logradouro, this.complemento, this.bairro, this.localidade,
-    			this.uf, this.ibge, this.ddd, this.numeroResidencial,	this.celular, this.senha);
+    			this.uf, this.ibge, this.ddd, this.numeroResidencial,	this.celular, this.senha, true);
     }
 }

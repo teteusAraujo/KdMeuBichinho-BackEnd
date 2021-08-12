@@ -2,6 +2,7 @@ package com.kdmeubichinho.services;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import com.kdmeubichinho.enums.*;
@@ -21,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AnuncioService {
-	
 
 	@Autowired
 	private AnuncioRepository anuncioRepository;
@@ -29,22 +29,22 @@ public class AnuncioService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
-	private AnuncioStatus ATIVO = AnuncioStatus.ATIVO;
+	private AnuncioSpecification specification = new AnuncioSpecification();
 
 	public Iterable<Anuncio> getFilteredAnnounce(Pageable pageable, String cep, AnuncioStatus status, AnimalSexo sexo,
 			AnimalPorte porte, AnimalClassificacaoEtaria classificacaoEtaria, Integer idCategoria, Integer idEspecie,
 			Boolean castrado, Boolean vacinado) {
 		return anuncioRepository
-				.findAll(Specification.where(cep == null ? null : AnuncioSpecification.AnimalCepFilter(cep))
-						.and(status == null ? null : AnuncioSpecification.statusFilter(status))
-						.and(sexo == null ? null : AnuncioSpecification.AnimalSexoFilter(sexo))
-						.and(idCategoria == null ? null : AnuncioSpecification.AnuncioCategoriaFilter(idCategoria))
-						.and(idEspecie == null ? null : AnuncioSpecification.AnimalEspecieFilter(idEspecie))
+				.findAll(Specification.where(cep == null ? null : specification.animalCepFilter(cep))
+						.and(status == null ? null : specification.statusFilter(status))
+						.and(sexo == null ? null : specification.animalSexoFilter(sexo))
+						.and(idCategoria == null ? null : specification.anuncioCategoriaFilter(idCategoria))
+						.and(idEspecie == null ? null : specification.animalEspecieFilter(idEspecie))
 						.and(classificacaoEtaria == null ? null
-								: AnuncioSpecification.AnimalClassificacaoEtariaFilter(classificacaoEtaria))
-						.and(vacinado == null ? null : AnuncioSpecification.AnimalVacinadoFilter(vacinado))
-						.and(castrado == null ? null : AnuncioSpecification.AnimalCastradoFilter(castrado))
-						.and(porte == null ? null : AnuncioSpecification.AnimalPorteFilter(porte)), pageable);
+								: specification.animalClassificacaoEtariaFilter(classificacaoEtaria))
+						.and(vacinado == null ? null : specification.animalVacinadoFilter(vacinado))
+						.and(castrado == null ? null : specification.animalCastradoFilter(castrado))
+						.and(porte == null ? null : specification.animalPorteFilter(porte)), pageable);
 	}
 
 	public Optional<Anuncio> getAnnounceById(Integer id) {
@@ -52,20 +52,21 @@ public class AnuncioService {
 	}
 
 	public Page<Anuncio> getAnnounceByEmailPessoa(String email, Pageable pageable) {
-		return anuncioRepository.findByidPessoa_Email(email, pageable);
+		return anuncioRepository.findByidPessoaEmail(email, pageable);
 	}
 
-	public Anuncio addAnnounce(Anuncio anuncio) {
+	public Anuncio save(Anuncio anuncio) {
 
 		Optional<Pessoa> pessoa = pessoaRepository.findByEmail(anuncio.getIdPessoa().getEmail());
 		if (pessoa.isPresent()) {
 			Integer pessoaId = pessoa.get().getIdPessoa();
 			anuncio.getIdPessoa().setIdPessoa(pessoaId);
 		}
+
 		if (anuncio.getIdAnimal().getNome().isEmpty()) {
 			anuncio.getIdAnimal().setNome("Desconhecido");
 		}
-		anuncio.setStatus(ATIVO);
+		anuncio.setStatus(AnuncioStatus.ATIVO);
 
 		anuncioRepository.save(anuncio);
 		return anuncio;
@@ -80,13 +81,12 @@ public class AnuncioService {
 		date.setHours((date.getHours()) - 3);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		System.out.println(formatter.format(date));
 
-		if (meuAnuncio.getStatus().equals("Ativo")) {
+		if (meuAnuncio.getStatus() == AnuncioStatus.ATIVO) {
 			meuAnuncio.setStatus(statusConverter.convertToEntityAttribute("Inativo"));
 			meuAnuncio.setDataEncerramento(date);
 
-		} else if (meuAnuncio.getStatus().equals("Inativo")) {
+		} else if (meuAnuncio.getStatus() == AnuncioStatus.INATIVO) {
 			meuAnuncio.setStatus(statusConverter.convertToEntityAttribute("Ativo"));
 			meuAnuncio.setDataEncerramento(null);
 		}
@@ -99,5 +99,7 @@ public class AnuncioService {
 		anuncioRepository.deleteById(id);
 	}
 
-
+	public List<Anuncio> getAll(){
+		return this.anuncioRepository.findAll();
+	}
 }

@@ -21,10 +21,15 @@ public class GlobalControllerExceptionHandler {
 	@ExceptionHandler(JpaSystemException.class)
 	@ResponseBody
 	public ResponseEntity<CustomExceptionDTO> handleJpaException(JpaSystemException ex) {
-		String[] errors = ex.getCause().getCause().toString().split("#");
 		String errorMessage = "Ocorreu um erro ao tentar executar a operação";
-		if(errors.length > 1){
-			errorMessage = errors[2];
+
+		if(null != ex.getCause().getCause()) {
+			String[] errors = ex.getCause().getCause().toString().split("#");
+			if (errors.length > 1) {
+				errorMessage = errors[2];
+			}
+		} else{
+			errorMessage += ex.getCause();
 		}
 		return new ResponseEntity<>(new CustomExceptionDTO(errorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
 	}

@@ -1,20 +1,11 @@
 package com.kdmeubichinho.controllers;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.kdmeubichinho.entities.Animal;
 import com.kdmeubichinho.services.AnimalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "animal")
@@ -33,14 +24,17 @@ public class AnimalController {
         return animalService.getById(id);
     }
 
+    /*
+    FIXME Fazer este metodo retonar a representacao mais atualida deste objeto
+     */
     @PostMapping("/cadastrar")
     public Animal addAnimal(@RequestBody Animal animal) {
-        animalService.addAnimal(animal);
+        animalService.save(animal);
         return animal;
     }
 
     @PutMapping("/{idAnimal}")
-    public Animal updateAnimal(@PathVariable Integer idAnimal, @RequestBody Animal dadosAnimal) throws Exception {
+    public Animal updateAnimal(@PathVariable Integer idAnimal, @RequestBody Animal dadosAnimal) {
         return animalService.updateAnimal(idAnimal, dadosAnimal);
     }
 

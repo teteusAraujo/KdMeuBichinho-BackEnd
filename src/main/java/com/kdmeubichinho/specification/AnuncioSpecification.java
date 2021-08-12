@@ -1,66 +1,65 @@
 package com.kdmeubichinho.specification;
 
-import java.text.MessageFormat;
-
-import org.springframework.data.jpa.domain.Specification;
-
 import com.kdmeubichinho.entities.Anuncio;
 import com.kdmeubichinho.enums.AnimalClassificacaoEtaria;
 import com.kdmeubichinho.enums.AnimalPorte;
 import com.kdmeubichinho.enums.AnimalSexo;
 import com.kdmeubichinho.enums.AnuncioStatus;
+import org.springframework.data.jpa.domain.Specification;
 
-
+import java.text.MessageFormat;
 
 public class AnuncioSpecification {
-	
-	public static Specification<Anuncio> statusFilter(AnuncioStatus status) {
+
+    public static final String ID_ANIMAL = "idAnimal";
+
+    public Specification<Anuncio> statusFilter(AnuncioStatus status) {
         return (root, criteriaQuery, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("status"), status);
     }
-	
-    public static Specification<Anuncio> AnimalSexoFilter(AnimalSexo sexo) {
+
+    public Specification<Anuncio> animalSexoFilter(AnimalSexo sexo) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("sexo"), sexo);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("sexo"), sexo);
     }
-    
-    public static Specification<Anuncio> AnimalPorteFilter(AnimalPorte porte) {
+
+    public Specification<Anuncio> animalPorteFilter(AnimalPorte porte) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("porte"), porte);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("porte"), porte);
     }
-    
-    public static Specification<Anuncio> AnimalClassificacaoEtariaFilter(AnimalClassificacaoEtaria classificacaoEtaria) {
+
+    public Specification<Anuncio> animalClassificacaoEtariaFilter(AnimalClassificacaoEtaria classificacaoEtaria) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("classificacaoEtaria"), classificacaoEtaria);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("classificacaoEtaria"), classificacaoEtaria);
     }
-    
-    public static Specification<Anuncio> AnimalCepFilter(String cep) {
+
+    public Specification<Anuncio> animalCepFilter(String cep) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.like(root.join("idAnimal").get("cep"), contains(cep));
+                criteriaBuilder.like(root.join(ID_ANIMAL).get("cep"), contains(cep));
     }
-    
-	private static String contains(String expression) {
-    return MessageFormat.format("{0}%", expression);
-	}
-	
-    public static Specification<Anuncio> AnuncioCategoriaFilter(Integer idCategoria) {
+
+    private String contains(String expression) {
+        return MessageFormat.format("{0}%", expression);
+    }
+
+    public Specification<Anuncio> anuncioCategoriaFilter(Integer idCategoria) {
         return (root, criteriaQuery, criteriaBuilder) ->
                 criteriaBuilder.equal(root.join("idCategoria").get("idCategoria"), idCategoria);
     }
-    
-    public static Specification<Anuncio> AnimalEspecieFilter(Integer idEspecie) {
+
+    public Specification<Anuncio> animalEspecieFilter(Integer idEspecie) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("especie"), idEspecie);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("especie"), idEspecie);
     }
-    
-    public static Specification<Anuncio> AnimalVacinadoFilter(Boolean vacinado) {
+
+    public Specification<Anuncio> animalVacinadoFilter(Boolean vacinado) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("vacinado"), vacinado);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("vacinado"), vacinado);
     }
-    
-    public static Specification<Anuncio> AnimalCastradoFilter(Boolean castrado) {
+
+    public Specification<Anuncio> animalCastradoFilter(Boolean castrado) {
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.join("idAnimal").get("castrado"), castrado);
+                criteriaBuilder.equal(root.join(ID_ANIMAL).get("castrado"), castrado);
     }
 
 

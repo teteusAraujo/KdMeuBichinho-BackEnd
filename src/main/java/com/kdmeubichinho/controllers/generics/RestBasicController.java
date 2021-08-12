@@ -66,9 +66,9 @@ public class RestBasicController<T extends BaseEntity, I extends ObjectDTO> {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<T> delete(@PathVariable Integer id) {
-        basicService.getById(id)
+        T t = basicService.getById(id)
                 .orElseThrow(() -> new ValidationException(EnumException.ITEM_NAO_ENCONTRADO));
-        basicService.deleteById(id);
+        basicService.deleteById(t.getId());
         return ResponseEntity.noContent().build();
     }
 }

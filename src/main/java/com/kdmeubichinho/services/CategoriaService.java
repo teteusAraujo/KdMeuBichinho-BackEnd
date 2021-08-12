@@ -35,9 +35,9 @@ public class CategoriaService implements RestBasicService<Categoria, CategoriaRe
 	}
 
 	@Override
-	public CategoriaRequestDTO save(CategoriaRequestDTO categoria) {
-		categoriaRepository.save(categoria.build());
-		return categoria;
+	public CategoriaRequestDTO save(CategoriaRequestDTO i) {
+		categoriaRepository.save(i.build());
+		return i;
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public interface RestBasicService<T, I> {
 
     Optional<T> getById(Integer id);
 
-    I save(I I);
+    I save(I i);
 
     void deleteById(Integer id);
 }
