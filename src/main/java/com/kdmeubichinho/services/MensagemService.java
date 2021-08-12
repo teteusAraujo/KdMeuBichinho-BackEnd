@@ -58,6 +58,16 @@ public class MensagemService implements RestBasicService<Mensagem, MensagemDTO> 
 		mensagemRepository.save(message);
 		return message;
 	}
+	
+	public Mensagem updateMessage(Integer idMessage, Mensagem dataMessage) throws Exception{
+		Mensagem messageToUpdate = mensagemRepository.findById(idMessage)
+				.orElseThrow(()-> new IllegalAccessException());
+		
+		if(!dataMessage.getMsgConteudo().isEmpty()) messageToUpdate.setMsgConteudo(dataMessage.getMsgConteudo());
+		
+		mensagemRepository.save(messageToUpdate);
+		return messageToUpdate;
+	}
 
 	@Override
 	public void deleteById(Integer id) {
