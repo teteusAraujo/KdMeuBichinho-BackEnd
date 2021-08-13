@@ -1,15 +1,15 @@
 package com.kdmeubichinho.dto;
 
 
+import com.kdmeubichinho.dto.generics.ObjectDTO;
 import com.kdmeubichinho.entities.Especie;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EspecieRequestDTO {
+public class EspecieRequestDTO implements ObjectDTO {
 	
 	private String nome;
 	

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.kdmeubichinho.enums.EnumException;
 import com.kdmeubichinho.exception.ValidationException;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,6 @@ import com.kdmeubichinho.converters.AnimalPorteConverter;
 import com.kdmeubichinho.converters.AnimalSexoConverter;
 import com.kdmeubichinho.entities.Animal;
 import com.kdmeubichinho.repositories.AnimalRepository;
-
-
 
 @Service
 public class AnimalService {
@@ -28,9 +27,8 @@ public class AnimalService {
 	public Optional<Animal> getById(Integer id){
 		return animalRepository.findById(id);
 	}
-	public Animal addAnimal(Animal animal) {
-		animalRepository.save(animal);
-		return animal;
+	public Animal save(Animal animal) {
+		return animalRepository.save(animal);
 	}
 	public Animal updateAnimal(Integer idAnimal, Animal dadosAnimal){
 		
@@ -44,11 +42,11 @@ public class AnimalService {
 		if(dadosAnimal.getCastrado() != null) meuAnimal.setCastrado(dadosAnimal.getCastrado());
 		if(dadosAnimal.getVacinado() != null) meuAnimal.setVacinado(dadosAnimal.getVacinado());
 		if(dadosAnimal.getEspecie() != null) meuAnimal.setEspecie(dadosAnimal.getEspecie());
-		if(!dadosAnimal.getCep().isEmpty()) meuAnimal.setCep(dadosAnimal.getCep());
-		if(!dadosAnimal.getNome().isEmpty()) meuAnimal.setNome(dadosAnimal.getNome());
-		if(!dadosAnimal.getPorte().isEmpty()) meuAnimal.setPorte(porteAnimalConverter.convertToEntityAttribute(dadosAnimal.getPorte()));
-		if(!dadosAnimal.getClassificacaoEtaria().isEmpty()) meuAnimal.setClassificacaoEtaria(classificacaoEtariaAnimalConverter.convertToEntityAttribute(dadosAnimal.getClassificacaoEtaria()));
-		if(!dadosAnimal.getSexo().isEmpty()) meuAnimal.setSexo(sexoAnimalConverter.convertToEntityAttribute(dadosAnimal.getSexo()));
+		if(!StringUtils.isBlank(dadosAnimal.getCep())) meuAnimal.setCep(dadosAnimal.getCep());
+		if(!StringUtils.isBlank(dadosAnimal.getNome())) meuAnimal.setNome(dadosAnimal.getNome());
+		if(null != dadosAnimal.getPorte()) meuAnimal.setPorte(porteAnimalConverter.convertToEntityAttribute(dadosAnimal.getPorte().getDescricao()));
+		if(null != dadosAnimal.getClassificacaoEtaria()) meuAnimal.setClassificacaoEtaria(classificacaoEtariaAnimalConverter.convertToEntityAttribute(dadosAnimal.getClassificacaoEtaria().getDescricao()));
+		if(null != dadosAnimal.getSexo()) meuAnimal.setSexo(sexoAnimalConverter.convertToEntityAttribute(dadosAnimal.getSexo().getDescricao()));
 		
 		animalRepository.save(meuAnimal);
 		return meuAnimal;

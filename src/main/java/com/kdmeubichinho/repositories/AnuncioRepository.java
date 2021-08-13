@@ -15,12 +15,12 @@ import com.kdmeubichinho.enums.AnimalSexo;
 
 public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>, JpaSpecificationExecutor<Anuncio>{
 	
-	Page<Anuncio> findByIdAnimal_Sexo(AnimalSexo sexo, Pageable pageable);
-	Page<Anuncio> findByIdAnimal_Especie_IdEspecie(Integer id, Pageable pageable);
-	Page<Anuncio> findByIdCategoria_IdCategoria(Integer id, Pageable pageable);
-	Page<Anuncio> findByIdAnimal_ClassificacaoEtaria(AnimalClassificacaoEtaria classificacaoEtaria, Pageable pageable);
-	Page<Anuncio> findByIdAnimal_Porte(AnimalPorte porte, Pageable pageable);
-	List<Anuncio> findByIdAnimal_SexoAndIdAnimal_Porte(AnimalSexo sexo, AnimalPorte porte);
-	Page<Anuncio> findByidPessoa_Email(String email, Pageable pageable);
+	Page<Anuncio> findByIdAnimalSexo(AnimalSexo sexo, Pageable pageable);
+	Page<Anuncio> findByIdAnimalEspecieIdEspecie(Integer id, Pageable pageable);
+	Page<Anuncio> findByIdCategoriaIdCategoria(Integer id, Pageable pageable);
+	Page<Anuncio> findByIdAnimalClassificacaoEtaria(AnimalClassificacaoEtaria classificacaoEtaria, Pageable pageable);
+	Page<Anuncio> findByIdAnimalPorte(AnimalPorte porte, Pageable pageable);
+	List<Anuncio> findByIdAnimalSexoAndIdAnimalPorte(AnimalSexo sexo, AnimalPorte porte);
+	Page<Anuncio> findByidPessoaEmail(String email, Pageable pageable);
 
 }

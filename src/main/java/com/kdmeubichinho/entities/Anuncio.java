@@ -17,14 +17,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kdmeubichinho.enums.AnuncioStatus;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Setter
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
 public class Anuncio {
@@ -36,7 +39,8 @@ public class Anuncio {
 	
 	@Column(name = "status_anuncio", nullable = false)
 	private AnuncioStatus status;
-	
+
+	@CreationTimestamp
 	@Column(name = "data_criacao", nullable = false)
 	private Date dataCriacao;
 	
@@ -60,16 +64,10 @@ public class Anuncio {
 	@OneToMany()
 	@JsonIgnoreProperties("id_anuncio")
 	private Set<Mensagem> mensagens;
-	
-	public String getStatus() {
-		return status.getDescricao();
-	}
 
-	public Anuncio(AnuncioStatus status, Date dataCriacao, Pessoa idPessoa, Animal idAnimal) {
-		this.status = status;
+	public Anuncio(AnuncioStatus anuncioStatus, Date dataCriacao){
+		status = anuncioStatus;
 		this.dataCriacao = dataCriacao;
-		this.idPessoa = idPessoa;
-		this.idAnimal = idAnimal;
 	}
 
 }

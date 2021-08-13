@@ -26,17 +26,17 @@ public class MensagemController {
 	
 	@GetMapping()
 	public Iterable<Mensagem> getAllMessages(){
-		return mensagemService.getAllMessages();
+		return mensagemService.getAll();
 	}
 	
 	@GetMapping("/{id}")
 	public Optional<Mensagem> getMessageById(@PathVariable Integer id){
-		return mensagemService.getMessageById(id);
+		return mensagemService.getById(id);
 	}
 	
 	@PostMapping()
 	public Mensagem addMessage(@RequestBody Mensagem message){
-		return mensagemService.addMessage(message);
+		return mensagemService.save(message);
 	}
 	
 	@PutMapping("/{idMessage}")
