@@ -16,7 +16,7 @@ import com.kdmeubichinho.entities.Pessoa;
 import com.kdmeubichinho.repositories.PessoaRepository;
 
 
-/*
+
 public class PessoaService implements UserDetailsService {
 	
 	@Autowired
@@ -66,4 +66,3 @@ public class PessoaService implements UserDetailsService {
         }
     }	
 }
-*/
