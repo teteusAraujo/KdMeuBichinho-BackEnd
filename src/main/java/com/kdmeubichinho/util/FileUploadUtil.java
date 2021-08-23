@@ -10,6 +10,11 @@ import java.nio.file.StandardCopyOption;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
+
+    private FileUploadUtil(){
+        //Apenas para ocultaro construtor padrao
+    }
+
 	public static void saveFile(String uploadDir, String fileName,
             MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);

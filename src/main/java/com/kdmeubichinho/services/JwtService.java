@@ -1,15 +1,19 @@
 package com.kdmeubichinho.services;
 
+import com.kdmeubichinho.entities.Pessoa;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Value;
-
-import com.kdmeubichinho.entities.Pessoa;
-
-
+@Service
 public class JwtService {
 	
 	@Value("${security.jwt.expiracao}")
@@ -18,9 +22,9 @@ public class JwtService {
 	@Value("${security.jwt.chave-assinatura}")
 	private String chaveAssinatura;
 	
-	/*
+
 	public String gerarToken(Pessoa pessoa) {
-		long expString = Long.valueOf(expiracao);
+		long expString = Long.parseLong(expiracao);
 		LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusDays(expString);
 		Instant instant = dataHoraExpiracao.atZone(ZoneId.systemDefault()).toInstant();
 		Date data = Date.from(instant);
@@ -55,7 +59,7 @@ public class JwtService {
 	}
 	
 	public String obterEmailUsuario(String token) throws ExpiredJwtException {
-		return (String) obterClaims(token).getSubject();
+		return obterClaims(token).getSubject();
 	}
-	*/
+
 }

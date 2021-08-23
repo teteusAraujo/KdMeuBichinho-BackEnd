@@ -1,10 +1,9 @@
 package com.kdmeubichinho.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.kdmeubichinho.entities.Especie;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 
-public interface EspecieRepository extends CrudRepository<Especie, Integer> {
+public interface EspecieRepository extends PagingAndSortingRepository<Especie, Integer> {
 
 }

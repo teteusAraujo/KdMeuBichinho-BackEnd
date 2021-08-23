@@ -1,10 +1,11 @@
 package com.kdmeubichinho.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class CredenciaisDTO {
 	private String email;
 	private String senha;

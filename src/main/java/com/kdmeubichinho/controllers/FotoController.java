@@ -61,16 +61,13 @@ public class FotoController {
 
     @PutMapping("/{idFoto}")
     public Foto updateFoto(@PathVariable Integer idFoto, @RequestBody Foto dadosFoto) {
-
-
         Foto meuFoto = fotoRepository.findById(idFoto)
                 .orElseThrow(() -> new ValidationException(EnumException.ITEM_NAO_ENCONTRADO));
 
-
         if (!dadosFoto.getCaminho().isEmpty()) meuFoto.setCaminho(dadosFoto.getCaminho());
 
-
         fotoRepository.save(meuFoto);
+
         return meuFoto;
     }
 

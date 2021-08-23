@@ -1,12 +1,11 @@
 package com.kdmeubichinho.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kdmeubichinho.entities.generics.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,8 +15,9 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Accessors(chain = true)
-public class Especie {
+public class Especie implements BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +27,10 @@ public class Especie {
 	@Column(nullable = false)
 	private String nome;
 
+	@Transient
+	@Override
+	@JsonIgnore
+	public Integer getId() {
+		return this.getIdEspecie();
+	}
 }

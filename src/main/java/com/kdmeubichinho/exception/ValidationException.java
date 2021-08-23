@@ -17,7 +17,7 @@ public class ValidationException extends RuntimeException{
     private final String description;
 
     public ValidationException(EnumException exceptionEnum) {
-        this.description = exceptionEnum.getDescription();
+        this.description = exceptionEnum.getDescricao();
         this.httpStatus = exceptionEnum.getHttpStatus();
     }
 

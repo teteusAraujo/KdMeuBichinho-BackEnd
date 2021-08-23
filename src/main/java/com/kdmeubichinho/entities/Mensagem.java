@@ -13,13 +13,18 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.kdmeubichinho.entities.generics.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
-public class Mensagem {
+public class Mensagem implements BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +34,8 @@ public class Mensagem {
 	@Column(name = "data_mensagem", nullable = false)
 	private Date dataMensagem;
 	
-	@Column(nullable = false)
-	private String mensagem;
+	@Column(nullable = false, name = "mensagem")
+	private String msgConteudo;
 	
 	@JoinColumn(name = "fk_id_pessoa")
 	@OneToOne
@@ -39,5 +44,10 @@ public class Mensagem {
 	@JoinColumn(name = "fk_id_anuncio")
 	@ManyToOne
 	@JsonIgnoreProperties("mensagens")
-	private Anuncio idAnuncio;	
+	private Anuncio idAnuncio;
+
+	@Override
+	public Integer getId(){
+		return this.getIdMensagem();
+	}
 }
