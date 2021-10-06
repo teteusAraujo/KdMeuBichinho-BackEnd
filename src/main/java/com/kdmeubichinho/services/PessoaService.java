@@ -27,18 +27,6 @@ public class PessoaService implements RestBasicService<Pessoa, PessoaDTO> {
     private final JwtService jwtService;
     private final PessoaRepository pessoaRepository;
 
-<<<<<<< HEAD
-
-public class PessoaService implements UserDetailsService {
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
-	
-	@Autowired
-    private JwtService jwtService;
-    
-=======
->>>>>>> 838de23df24748ee8c02c17c0590a453f46a350c
     @Autowired
     public PessoaService(PasswordEncoder passwordEncoder, JwtService jwtService,
                          PessoaRepository pessoaRepository) {
