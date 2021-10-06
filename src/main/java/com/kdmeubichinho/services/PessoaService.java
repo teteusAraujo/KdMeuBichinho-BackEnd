@@ -75,6 +75,27 @@ public class PessoaService implements RestBasicService<Pessoa, PessoaDTO> {
         pessoa.setSenha(senhaCriptografada);
         return pessoaRepository.save(pessoa.build());
     }
+    
+	public Pessoa updatePerson(String emailPerson, PessoaDTO dataPerson) throws Exception{
+		Pessoa myPerson = pessoaRepository.findByEmail(emailPerson)
+				.orElseThrow(()-> new IllegalAccessException());
+		
+		if(!dataPerson.getNome().isEmpty()) myPerson.setNome(dataPerson.getNome());
+		if(!dataPerson.getCelular().isEmpty()) myPerson.setCelular(dataPerson.getCelular());
+		if(!dataPerson.getCep().isEmpty()) myPerson.setCep(dataPerson.getCep());
+		if(!dataPerson.getLogradouro().isEmpty()) myPerson.setLogradouro(dataPerson.getLogradouro());
+		if(!dataPerson.getComplemento().isEmpty()) myPerson.setComplemento(dataPerson.getComplemento());
+		if(!dataPerson.getBairro().isEmpty()) myPerson.setBairro(dataPerson.getBairro());
+		if(!dataPerson.getLocalidade().isEmpty()) myPerson.setLocalidade(dataPerson.getLocalidade());
+		if(!dataPerson.getUf().isEmpty()) myPerson.setUf(dataPerson.getUf());
+		if(!dataPerson.getIbge().isEmpty()) myPerson.setIbge(dataPerson.getIbge());
+		if(!dataPerson.getDdd().isEmpty()) myPerson.setDdd(dataPerson.getDdd());
+		if(!dataPerson.getNumeroResidencial().isEmpty()) myPerson.setNumeroResidencial(dataPerson.getNumeroResidencial());
+		myPerson.setComplemento(dataPerson.getComplemento());
+		
+		pessoaRepository.save(myPerson);
+		return myPerson;
+	}
 
     public ResponseEntity<TokenDTO> authenticatePerson(CredenciaisDTO credenciais) {
         try {

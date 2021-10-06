@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kdmeubichinho.dto.CredenciaisDTO;
+import com.kdmeubichinho.dto.PessoaDTO;
 import com.kdmeubichinho.dto.TokenDTO;
 import com.kdmeubichinho.entities.Pessoa;
 import com.kdmeubichinho.services.PessoaService;
@@ -56,6 +59,16 @@ public class PessoaController {
 	@PostMapping("/auth")
 	public ResponseEntity<TokenDTO> autenticar(@RequestBody CredenciaisDTO credenciais) {
 		return pessoaService.authenticatePerson(credenciais);
+	}
+	
+	@PutMapping("/{emailPerson}")
+	public Pessoa updatePessoa(@PathVariable String emailPerson,@RequestBody PessoaDTO dataPerson) throws Exception{
+		return pessoaService.updatePerson(emailPerson, dataPerson);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deletePessoa(@PathVariable Integer id) {
+		pessoaService.deleteById(id);
 	}
 
 }
